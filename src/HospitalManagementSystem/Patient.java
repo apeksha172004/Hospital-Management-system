@@ -56,7 +56,7 @@ public class Patient {
                 String name = resultSet.getString("name");
                 int age = resultSet.getInt("age");
                 String gender = resultSet.getString("gender");
-                System.out.printf("|%-12s|%-27s|%-10s|%-13s|");       // Helps in formatting the output...%-12s will leave 12 spaceses between bars.
+                System.out.printf("|%-12s|%-27s|%-10s|%-13s|\n",id, name, age, gender);       // Helps in formatting the output...%-12s will leave 12 spaceses between bars.
                 System.out.println("+------------+---------------------------+----------+-------------+");
 
             }
@@ -67,7 +67,20 @@ public class Patient {
     }
 
     public boolean getPatientById(int id){
-
+        String query = "SELECT * FROM patients WHERE id = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }
 
