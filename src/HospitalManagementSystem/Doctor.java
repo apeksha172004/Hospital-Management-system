@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
+
 
 public class Doctor {
-    private Connection connection;
+    private final Connection connection;
 
-    public Doctor(Connection connection, Scanner scanner){
+    public Doctor(Connection connection){
         this.connection = connection;
     }
 
@@ -25,7 +25,6 @@ public class Doctor {
             while (resultSet.next()){
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
-                int age = resultSet.getInt("age");
                 String specialization = resultSet.getString("specialization");
                 System.out.printf("|%-12s|%-27s|%-19s|\n",id, name, specialization);       // Helps in formatting the output...%-12s will leave 12 spaceses between bars.
                 System.out.println("------------+---------------------------+-------------------+");
