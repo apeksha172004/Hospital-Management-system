@@ -26,7 +26,7 @@ public class Doctor {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String specialization = resultSet.getString("specialization");
-                System.out.printf("| %-10s | %-25s | %-17s |\n",id, name, specialization);       // Helps in formatting the output...%-12s will leave 12 spaceses between bars.
+                System.out.printf("| %-10s | %-25s | %-17s |\n",id, name, specialization);       // Helps in formatting the output...%-12s will leave 12 spaces between bars.
                 System.out.println("------------+---------------------------+-------------------+");
 
             }
