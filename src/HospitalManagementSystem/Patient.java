@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Patient {
-    private Connection connection;
-    private Scanner scanner;
+    private final Connection connection;
+    private final Scanner scanner;
 
     public Patient(Connection connection, Scanner scanner){
         this.connection = connection;
@@ -56,7 +56,7 @@ public class Patient {
                 String name = resultSet.getString("name");
                 int age = resultSet.getInt("age");
                 String gender = resultSet.getString("gender");
-                System.out.printf("|%-12s|%-27s|%-10s|%-13s|\n",id, name, age, gender);       // Helps in formatting the output...%-12s will leave 12 spaceses between bars.
+                System.out.printf("| %-10s | %-25s | %-8s | %-11s |\n",id, name, age, gender);       // Helps in formatting the output...%-12s will leave 12 spaces between bars.
                 System.out.println("+------------+---------------------------+----------+-------------+");
 
             }

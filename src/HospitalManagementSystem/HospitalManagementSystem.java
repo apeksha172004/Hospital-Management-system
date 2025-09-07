@@ -3,7 +3,6 @@ package HospitalManagementSystem;
 import java.sql.*;
 import java.util.Scanner;
 
-import static java.lang.Class.forName;
 
 public class HospitalManagementSystem {
     private static final String url = "jdbc:mysql://127.0.0.1:3306/hospital";
@@ -37,22 +36,28 @@ public class HospitalManagementSystem {
                         // Add Patients
                         patient.addPatient();
                         System.out.println();
+                        break;
                     case 2:
                         // View Patient
                         patient.viewPatients();
                         System.out.println();
+                        break;
                     case 3:
                         // View Doctors
                         doctor.viewDoctors();
                         System.out.println();
+                        break;
                     case 4:
                         // Book Appointment
                         bookAppointment(patient, doctor, connection, scanner);
                         System.out.println();
+                        break;
                     case 5:
+                        System.out.println("THANK YOU FOR USING HOSPITAL MANAGEMENT SYSTEM!!");
                         return;
                     default:
                         System.out.println("Enter valid choice!!");
+                        break;
                 }
             }
         }catch (SQLException e){
@@ -61,11 +66,11 @@ public class HospitalManagementSystem {
     }
 
     public static void bookAppointment(Patient patient,Doctor doctor, Connection connection, Scanner scanner){
-        System.out.println("Enter Patient ID: ");
+        System.out.print("Enter Patient ID: ");
         int patientID = scanner.nextInt();
-        System.out.println("Enter Doctor ID: ");
+        System.out.print("Enter Doctor ID: ");
         int doctorID = scanner.nextInt();
-        System.out.println("Enter appointment date(YYYY-MM-DD): ");
+        System.out.print("Enter appointment date(YYYY-MM-DD): ");
         String appointmentDate = scanner.next();
         if (patient.getPatientById(patientID) && doctor.getDoctorById(doctorID)){
             if (checkDoctorAvailability(doctorID, appointmentDate, connection)){
@@ -85,7 +90,7 @@ public class HospitalManagementSystem {
                     e.printStackTrace();
                 }
             }else {
-                System.out.println("Doctor not available in this date!!");
+                System.out.println("Doctor not available on this date!!");
             }
         }else {
             System.out.println("Neither doctor nor patient exists!! ");
